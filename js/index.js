@@ -1,4 +1,6 @@
-// Допустим, у нас есть односвязный список (как описано в главе Рекурсия и стек):
+// Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+
+// Сделайте два решения: с использованием цикла и через рекурсию.
 
 let list = {
   value: 1,
@@ -13,31 +15,14 @@ let list = {
     }
   }
 };
-// Напишите функцию printList(list), которая выводит элементы списка по одному.
 
-// Сделайте два варианта решения: используя цикл и через рекурсию.
-//recursion
-// function printList(list){
-//     console.log(list.value)
-//     if(list.next){
-//       printList(list.next);
-//     }
-// }
-
-//while
-function printList(list) {
+function printListRev(list) {
   
-  let curr = list;
-
-  while(curr){
-    console.log(curr.value);
-    curr = curr.next;
-  }
+if(list.next){
+  printListRev(list.next)
+}
+console.log(list.value);
 
 }
 
-
-
-
-
-printList(list);
+printListRev(list)
