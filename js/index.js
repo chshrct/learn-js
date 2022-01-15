@@ -1,46 +1,18 @@
-'use strict'
+// Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
 
-let company = {
-  sales: [{
-    name: 'John',
-    salary: 1000
-  }, {
-    name: 'Alice',
-    salary: 600
-  }],
+// Сделайте три варианта решения:
 
-  development: {
-    sites: [{
-      name: 'Peter',
-      salary: 2000
-    }, {
-      name: 'Alex',
-      salary: 1800
-    }],
+// С использованием цикла.
+// Через рекурсию, т.к. sumTo(n) = n + sumTo(n-1) for n > 1.
+// С использованием формулы арифметической прогрессии.
 
-    internals: [{
-      name: 'Jack',
-      salary: 1300
-    }]
+// cycle
+function sumTo(n) {
+  let sum =0;
+  for (i=1;i<=n;i++){
+    sum+=i;
   }
-};
-
-
-function salaries(params) {
-  let sumSal = 0;
-  if(Array.isArray(params)){
-
-    return params.reduce(
-      (sum,curr)=>sum+curr.salary
-      ,0
-    )
-  }else{
-    let sum = 0;
-    for (let arr of Object.values(params) ){
-      sum += salaries(arr)
-    }
-    return sum
-  }
+  return sum;
 }
 
-console.log(salaries(company)); 
+alert( sumTo(100) ); // 5050
