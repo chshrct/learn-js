@@ -17,11 +17,27 @@ let list = {
 
 // Сделайте два варианта решения: используя цикл и через рекурсию.
 //recursion
-function printList(list){
-    console.log(list.value)
-    if(list.next){
-      printList(list.next);
-    }
+// function printList(list){
+//     console.log(list.value)
+//     if(list.next){
+//       printList(list.next);
+//     }
+// }
+
+//while
+function printList(list) {
+  
+  let curr = list;
+
+  while(curr){
+    console.log(curr.value);
+    curr = curr.next;
+  }
+
 }
+
+
+
+
 
 printList(list);
