@@ -7,12 +7,17 @@
 // С использованием формулы арифметической прогрессии.
 
 // cycle
-function sumTo(n) {
-  let sum =0;
-  for (i=1;i<=n;i++){
-    sum+=i;
-  }
-  return sum;
+// function sumTo(n) {
+//   let sum =0;
+//   for (i=1;i<=n;i++){
+//     sum+=i;
+//   }
+//   return sum;
+// }
+// recursion
+function sumTo(n){
+  return (n>1)?n+sumTo(n-1):n
 }
+
 
 alert( sumTo(100) ); // 5050
