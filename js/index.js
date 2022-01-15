@@ -30,17 +30,16 @@ function salaries(params) {
   let sumSal = 0;
   if(Array.isArray(params)){
 
-    params.forEach(element => {
-    sumSal += element.salary;
-
-    });
-    return sumSal;
-    
+    return params.reduce(
+      (sum,curr)=>sum+curr.salary
+      ,0
+    )
   }else{
-    for (let key in params){
-      sumSal+=salaries(params[key])
+    let sum = 0;
+    for (let arr of Object.values(params) ){
+      sum += salaries(arr)
     }
-    return sumSal;
+    return sum
   }
 }
 
