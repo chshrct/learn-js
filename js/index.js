@@ -1,14 +1,27 @@
-// Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+// Допустим, у нас есть односвязный список (как описано в главе Рекурсия и стек):
 
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+// Напишите функцию printList(list), которая выводит элементы списка по одному.
 
-function fib(n) {
-  return (n<=1)?n:fib(n-1)+fib(n-2);
-
-
+// Сделайте два варианта решения: используя цикл и через рекурсию.
+//recursion
+function printList(list){
+    console.log(list.value)
+    if(list.next){
+      printList(list.next);
+    }
 }
 
-
-
-alert(fib(3)); // 2
-alert(fib(7)); // 13
-alert(fib(77)); // 5527939700884757
+printList(list);
