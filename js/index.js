@@ -15,9 +15,13 @@
 //   return sum;
 // }
 // recursion
+// function sumTo(n){
+//   return (n>1)?n+sumTo(n-1):n;
+// }
+// progression
 function sumTo(n){
-  return (n>1)?n+sumTo(n-1):n
-}
 
+  return ((2+(n-1))/2)*n;
+}
 
 alert( sumTo(100) ); // 5050
