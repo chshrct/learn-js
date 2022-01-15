@@ -15,14 +15,29 @@ let list = {
     }
   }
 };
+//recursion
+// function printListRev(list) {
+  
+// if(list.next){
+//   printListRev(list.next)
+// }
+// console.log(list.value);
+
+// }
 
 function printListRev(list) {
-  
-if(list.next){
-  printListRev(list.next)
-}
-console.log(list.value);
+  let values = [];
+  let qwe = list;
 
+  while (qwe) {
+    values.push(qwe.value);
+    qwe = qwe.next;
+  }
+
+  for (let i = values.length - 1; i >= 0; i--) {
+    console.log( values[i] );
+  }
 }
+
 
 printListRev(list)
