@@ -1,28 +1,21 @@
-// У нас есть массив объектов, который нужно отсортировать:
+function makeArmy() {
+  let shooters = [];
 
-let users = [
-  { name: "John", age: 20, surname: "Johnson" },
-  { name: "Pete", age: 18, surname: "Peterson" },
-  { name: "Ann", age: 19, surname: "Hathaway" }
-];
-// Обычный способ был бы таким:
+  let i = 0;
+  while (i < 10) {
+    let z = i;
+    let shooter = function() { // функция shooter
+      alert( z ); // должна выводить порядковый номер
+    };
+    shooters.push(shooter);
+    i++;
+  }
 
-// // по имени (Ann, John, Pete)
-// users.sort((a, b) => a.name > b.name ? 1 : -1);
-
-// // по возрасту (Pete, Ann, John)
-// users.sort((a, b) => a.age > b.age ? 1 : -1);
-// Можем ли мы сделать его короче, скажем, вот таким?
-
-users.sort(byField('name'));
-users.sort(byField('age'));
-// То есть, чтобы вместо функции, мы просто писали byField(fieldName).
-
-// Напишите функцию byField, которая может быть использована для этого.
-
-
-
-
-function byField(params) {
-  return((a, b) => a[params] > b[params] ? 1 : -1
+  return shooters;
 }
+
+let army = makeArmy();
+
+army[0](); // у 0-го стрелка будет номер 10
+army[5](); // и у 5-го стрелка тоже будет номер 10
+// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
