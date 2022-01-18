@@ -1,29 +1,17 @@
-function sum(a) {
-  
-  let curSum = a;
+// Напишите функцию printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
 
-  function add(b){
-    curSum +=b;
-    return add;
-  }
+// Сделайте два варианта решения.
 
-  add.toString = function() {
-    return curSum;
-  };
+// Используя setInterval.
+// Используя рекурсивный setTimeout.
 
-  return add;
-
+function printNumbers(from,to) {
+  let index = setInterval(function AlertIt(){
+    alert(from);
+      
+    if(from==to) 
+      clearInterval(index);
+      from++;
+  },2000)
 }
-
-
-
-
-
-
-
-
-alert(sum(1)(2)); // 1 + 2
-sum(1)(2)(3) == 6; // 1 + 2 + 3
-sum(5)(-1)(2) == 6
-sum(6)(-1)(-2)(-3) == 0
-sum(0)(1)(2)(3)(4)(5) == 15
+printNumbers(2,5)
