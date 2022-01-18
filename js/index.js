@@ -1,21 +1,24 @@
-function makeArmy() {
-  let shooters = [];
+function makeCounter() {
+  let count = 0;
+  return function counter(){
+      
+    counter.decrease = ()=> count--;
+    
+    counter.set = value => count=value;
 
-  let i = 0;
-  while (i < 10) {
-    let z = i;
-    let shooter = function() { // функция shooter
-      alert( z ); // должна выводить порядковый номер
-    };
-    shooters.push(shooter);
-    i++;
+    return count++;
+  };
   }
 
-  return shooters;
-}
+let counter = makeCounter();
 
-let army = makeArmy();
+alert( counter() ); // 0
+alert( counter() ); // 1
 
-army[0](); // у 0-го стрелка будет номер 10
-army[5](); // и у 5-го стрелка тоже будет номер 10
-// ... у всех стрелков будет номер 10, вместо 0, 1, 2, 3...
+counter.set(10); // установить новое значение счётчика
+
+alert( counter() ); // 10
+
+counter.decrease(); // уменьшить значение счётчика на 1
+
+alert( counter() ); // 10 (вместо 11)
