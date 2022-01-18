@@ -6,12 +6,15 @@
 // Используя рекурсивный setTimeout.
 
 function printNumbers(from,to) {
-  let index = setInterval(function AlertIt(){
-    alert(from);
-      
-    if(from==to) 
-      clearInterval(index);
-      from++;
-  },2000)
+  let index = setTimeout(function f() {
+    
+    alert(from++);
+    if (from-1==to){
+      clearTimeout(index)
+    }else{
+      return f()
+    }
+
+  },1000)
 }
 printNumbers(2,5)
