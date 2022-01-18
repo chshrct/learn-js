@@ -1,24 +1,29 @@
-function makeCounter() {
-  let count = 0;
-  return function counter(){
-      
-    counter.decrease = ()=> count--;
-    
-    counter.set = value => count=value;
+function sum(a) {
+  
+  let curSum = a;
 
-    return count++;
-  };
+  function add(b){
+    curSum +=b;
+    return add;
   }
 
-let counter = makeCounter();
+  add.toString = function() {
+    return curSum;
+  };
 
-alert( counter() ); // 0
-alert( counter() ); // 1
+  return add;
 
-counter.set(10); // установить новое значение счётчика
+}
 
-alert( counter() ); // 10
 
-counter.decrease(); // уменьшить значение счётчика на 1
 
-alert( counter() ); // 10 (вместо 11)
+
+
+
+
+
+alert(sum(1)(2)); // 1 + 2
+sum(1)(2)(3) == 6; // 1 + 2 + 3
+sum(5)(-1)(2) == 6
+sum(6)(-1)(-2)(-3) == 0
+sum(0)(1)(2)(3)(4)(5) == 15
