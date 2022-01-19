@@ -1,43 +1,23 @@
-function f(a) {
-  console.log(a)
+// Создайте декоратор delay(f, ms), который задерживает каждый вызов f на ms миллисекунд. Например:
+
+function f(x) {
+  alert(x);
+}
+function delay(f, ms) {
+
+  return function() {
+    setTimeout(() => f.apply(this, arguments), ms);
+  };
+
 }
 
-function throttle(func, ms) {
 
-  let isThrottled = false,
-    savedArgs,
-    savedThis;
+// создаём обёртки
+let f1000 = delay(f, 1000);
+let f1500 = delay(f, 1500);
 
-  function wrapper() {
+f1000("test"); // показывает "test" после 1000 мс
+f1500("test"); // показывает "test" после 1500 мс
+// Другими словами, delay(f, ms) возвращает вариант f с «задержкой на ms мс».
 
-    if (isThrottled) { 
-      savedArgs = arguments;
-      savedThis = this;
-      return;
-    }
-
-    func.apply(this, arguments); 
-
-    isThrottled = true;
-
-    setTimeout(function() {
-      isThrottled = false; 
-      if (savedArgs) {
-        wrapper.apply(savedThis, savedArgs);
-        savedArgs = savedThis = null;
-      }
-    }, ms);
-  }
-
-  return wrapper;
-}
-
-// f1000 передаёт вызовы f максимум раз в 1000 мс
-let f1000 = throttle(f, 1000);
-
-f1000(1); // показывает 1
-f1000(2); // (ограничение, 1000 мс ещё нет)
-f1000(3); // (ограничение, 1000 мс ещё нет)
-
-// когда 1000 мс истекли ...
-// ...выводим 3, промежуточное значение 2 было проигнорировано
+// В приведённом выше коде f – функция с одним аргументом, но ваше решение должно передавать все аргументы и контекст this.
