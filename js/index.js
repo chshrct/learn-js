@@ -1,21 +1,25 @@
-// В приведённом ниже коде создаются и изменяются два объекта.
+// Задача состоит из двух частей.
 
-// Какие значения показываются в процессе выполнения кода?
+// У нас есть объекты:
 
-let animal = {
-  jumps: null
-};
-let rabbit = {
-  __proto__: animal,
-  jumps: true
+let head = {
+  glasses: 1
 };
 
-alert( rabbit.jumps ); // true (1)
+let table = {
+  __proto__:head,
+  pen: 3
+};
 
-delete rabbit.jumps;
+let bed = {
+  __proto__:table,
+  sheet: 1,
+  pillow: 2
+};
 
-alert( rabbit.jumps ); // null (2)
-
-delete animal.jumps;
-
-alert( rabbit.jumps ); // undefined (3)
+let pockets = {
+  __proto__:bed,
+  money: 2000
+};
+// С помощью свойства __proto__ задайте прототипы так, чтобы поиск любого свойства выполнялся по следующему пути: pockets → bed → table → head. Например, pockets.pen должно возвращать значение 3 (найденное в table), а bed.glasses – значение 1 (найденное в head).
+// Ответьте на вопрос: как быстрее получить значение glasses – через pockets.glasses или через head.glasses? При необходимости составьте цепочки поиска и сравните их.
