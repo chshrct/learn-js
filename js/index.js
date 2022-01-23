@@ -1,15 +1,28 @@
-// Объект rabbit наследует от объекта animal.
+// У нас есть два хомяка: шустрый (speedy) и ленивый (lazy); оба наследуют от общего объекта hamster.
 
-// Какой объект получит свойство full при вызове rabbit.eat(): animal или rabbit?
+// Когда мы кормим одного хомяка, второй тоже наедается. Почему? Как это исправить?
 
-let animal = {
-  eat() {
-    this.full = true;
+let hamster = {
+  stomach: [],
+
+  eat(food) {
+    this.stomach.push(food);
   }
 };
 
-let rabbit = {
-  __proto__: animal
+let speedy = {
+  __proto__: hamster,
+  stomach: []
 };
 
-rabbit.eat(); // rabit.full = true
+let lazy = {
+  __proto__: hamster,
+  stomach: []
+};
+
+// Этот хомяк нашёл еду
+speedy.eat("apple");
+alert( speedy.stomach ); // apple
+
+// У этого хомяка тоже есть еда. Почему? Исправьте
+alert( lazy.stomach ); // apple
