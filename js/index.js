@@ -1,23 +1,21 @@
-// Создайте декоратор delay(f, ms), который задерживает каждый вызов f на ms миллисекунд. Например:
+// В приведённом ниже коде создаются и изменяются два объекта.
 
-function f(x) {
-  alert(x);
-}
-function delay(f, ms) {
+// Какие значения показываются в процессе выполнения кода?
 
-  return function() {
-    setTimeout(() => f.apply(this, arguments), ms);
-  };
+let animal = {
+  jumps: null
+};
+let rabbit = {
+  __proto__: animal,
+  jumps: true
+};
 
-}
+alert( rabbit.jumps ); // true (1)
 
+delete rabbit.jumps;
 
-// создаём обёртки
-let f1000 = delay(f, 1000);
-let f1500 = delay(f, 1500);
+alert( rabbit.jumps ); // null (2)
 
-f1000("test"); // показывает "test" после 1000 мс
-f1500("test"); // показывает "test" после 1500 мс
-// Другими словами, delay(f, ms) возвращает вариант f с «задержкой на ms мс».
+delete animal.jumps;
 
-// В приведённом выше коде f – функция с одним аргументом, но ваше решение должно передавать все аргументы и контекст this.
+alert( rabbit.jumps ); // undefined (3)
