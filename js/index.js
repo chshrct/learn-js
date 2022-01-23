@@ -1,28 +1,60 @@
-// У нас есть два хомяка: шустрый (speedy) и ленивый (lazy); оба наследуют от общего объекта hamster.
+// В коде ниже мы создаём нового кролика new Rabbit, а потом пытаемся изменить его прототип.
 
-// Когда мы кормим одного хомяка, второй тоже наедается. Почему? Как это исправить?
+// Сначала у нас есть такой код:
 
-let hamster = {
-  stomach: [],
-
-  eat(food) {
-    this.stomach.push(food);
-  }
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
 };
 
-let speedy = {
-  __proto__: hamster,
-  stomach: []
+let rabbit = new Rabbit();
+
+alert( rabbit.eats ); // true
+// Добавим одну строчку (выделенную в коде ниже). Что вызов alert покажет нам сейчас?
+
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
 };
 
-let lazy = {
-  __proto__: hamster,
-  stomach: []
+let rabbit = new Rabbit();
+
+Rabbit.prototype = {};
+
+alert( rabbit.eats ); // true
+// …А если код такой (заменили одну строчку)?
+
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
 };
 
-// Этот хомяк нашёл еду
-speedy.eat("apple");
-alert( speedy.stomach ); // apple
+let rabbit = new Rabbit();
 
-// У этого хомяка тоже есть еда. Почему? Исправьте
-alert( lazy.stomach ); // apple
+Rabbit.prototype.eats = false;
+
+alert( rabbit.eats ); // false
+// Или такой (заменили одну строчку)?
+
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+delete rabbit.eats;
+
+alert( rabbit.eats ); // true
+// Или, наконец, такой:
+
+function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+delete Rabbit.prototype.eats;
+
+alert( rabbit.eats ); // undefined
