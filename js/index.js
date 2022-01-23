@@ -1,25 +1,15 @@
-// Задача состоит из двух частей.
+// Объект rabbit наследует от объекта animal.
 
-// У нас есть объекты:
+// Какой объект получит свойство full при вызове rabbit.eat(): animal или rabbit?
 
-let head = {
-  glasses: 1
+let animal = {
+  eat() {
+    this.full = true;
+  }
 };
 
-let table = {
-  __proto__:head,
-  pen: 3
+let rabbit = {
+  __proto__: animal
 };
 
-let bed = {
-  __proto__:table,
-  sheet: 1,
-  pillow: 2
-};
-
-let pockets = {
-  __proto__:bed,
-  money: 2000
-};
-// С помощью свойства __proto__ задайте прототипы так, чтобы поиск любого свойства выполнялся по следующему пути: pockets → bed → table → head. Например, pockets.pen должно возвращать значение 3 (найденное в table), а bed.glasses – значение 1 (найденное в head).
-// Ответьте на вопрос: как быстрее получить значение glasses – через pockets.glasses или через head.glasses? При необходимости составьте цепочки поиска и сравните их.
+rabbit.eat(); // rabit.full = true
