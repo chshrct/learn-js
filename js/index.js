@@ -1,27 +1,5 @@
-function rot13(str) {
-
-    let alphArr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    let rot13 = makeRot13(alphArr);
-    
-    function makeRot13(alphArr){
-      let newArr = [...alphArr];
-      
-      for (let i =0;i<13;i++){
-        newArr.push(newArr.shift())
-      }
-      return newArr
+function telephoneCheck(str) {
+    let regexMe = /^(1\s?)?(\d{3}|\(\d{3}\))[\-\s]?\d{3}[\-\s]?\d{4}$/;
+    return regexMe.test(str)
     }
-    
-      return str.split('').map(
-        el=>{
-          if(alphArr.indexOf(el)>=0){
-            return rot13[alphArr.indexOf(el)]
-          }else{
-            return el
-          }      
-        }     
-      )
-      .join('')
-    }
-    
-    rot13("SERR PBQR PNZC");
+    telephoneCheck("555-555-5555");
