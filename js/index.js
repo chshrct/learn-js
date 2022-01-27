@@ -1,10 +1,13 @@
-class Rabbit extends Object {
-    constructor(name) {
-      super();
-      this.name = name;
+function palindrome(str) {
+    let newStr= str.split(/\W|_/)
+        .filter(el=>!(el==''))
+        .join('').toLowerCase();
+    
+    if(newStr===newStr.split('').reverse().join('')){
+      return true
+    }else{
+      return false
     }
-  }
-  
-  let rabbit = new Rabbit("Кроль");
-  
-  alert( rabbit.hasOwnProperty('name') ); // Ошибка
+    }
+    
+    palindrome("My age is 0, 0 si ega ym.");
