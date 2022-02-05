@@ -1,9 +1,5 @@
-// Return the output array, and ignore all non-op characters
-function parse( data )
-{
-  let val  = 0;
-  const dataArr = data.split('');
-  console.log(dataArr);
-}
+const liElems = document.body.querySelectorAll('li');
 
-parse("iiisdoso");
+for (li of liElems) {
+    console.log(li.firstChild.data)
+}
