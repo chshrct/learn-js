@@ -1,5 +1,1 @@
-const liElems = document.body.querySelectorAll('li');
-
-for (li of liElems) {
-    console.log(li.firstChild.data)
-}
+console.log(document.querySelector('[data-widget-name]').dataset.widgetName)
