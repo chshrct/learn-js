@@ -1,8 +1,10 @@
-// У нас есть пустой DOM-элемент elem и строка text.
-//
-//     Какие из этих 3-х команд работают одинаково?
+// Создайте функцию clear(elem), которая удаляет всё содержимое из elem.
 
-    elem.append(document.createTextNode(text))
-    elem.innerHTML = text
-    elem.textContent = text
-// 1 и 3
+ const olExample = document.getElementById('elem');
+
+function clear(elem){
+    elem.innerHTML=''
+
+}
+
+clear(olExample)
