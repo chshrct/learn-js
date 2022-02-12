@@ -1,10 +1,11 @@
-// Запустите этот пример. Почему вызов remove не удалил текст "aaa"?
+let a;
+do{
 
-
-
-
-        alert(table); // таблица, как и должно быть
-
-        table.remove();
- // почему в документе остался текст "ааа"??
-// HTML table с ошибками, aaa выкидывается из таблицы
+        a=prompt('Введи дело')
+        console.log(a)
+    if(a){
+        let z = document.createElement("li")
+        z.textContent=a
+        document.getElementById('list').append(z)
+    }
+    }while(a)
