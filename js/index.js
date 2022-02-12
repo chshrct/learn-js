@@ -1,10 +1,10 @@
-// Создайте функцию clear(elem), которая удаляет всё содержимое из elem.
+// Запустите этот пример. Почему вызов remove не удалил текст "aaa"?
 
- const olExample = document.getElementById('elem');
 
-function clear(elem){
-    elem.innerHTML=''
 
-}
 
-clear(olExample)
+        alert(table); // таблица, как и должно быть
+
+        table.remove();
+ // почему в документе остался текст "ааа"??
+// HTML table с ошибками, aaa выкидывается из таблицы
