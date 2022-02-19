@@ -1,40 +1,9 @@
-// Напишите функцию createTree, которая создаёт вложенный список ul/li из объекта.
-//
-//     Например:
+const listItems =  document.querySelectorAll('li')
+console.log(listItems)
+for(let li of listItems){
+    const count = li.querySelectorAll('li').length
+    const text = document.createTextNode(`[${count}]`)
 
-let data = {
-    "Рыбы": {
-        "форель": {},
-        "лосось": {}
-    },
-
-    "Деревья": {
-        "Огромные": {
-            "секвойя": {},
-            "дуб": {}
-        },
-        "Цветковые": {
-            "яблоня": {},
-            "магнолия": {}
-        }
-    }
-}
-// Синтаксис:
-
-let container = document.getElementById('container');
-
-const createTree = (cont, obj) => {
-
-    const unorderedList = document.createElement('ul')
-    cont.append(unorderedList)
-
-    for (let key in obj) {
-        let listItem = document.createElement('li')
-        listItem.textContent = key
-        unorderedList.append(listItem)
-        Object.keys(obj[key]).length>0 && createTree(listItem,obj[key])
-    }
+    count>0 && (li.firstChild.after(text))
 
 }
-
-createTree(container, data); // создаёт дерево в контейнере
