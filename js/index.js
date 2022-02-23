@@ -1,11 +1,26 @@
-const names = document.querySelectorAll('td:first-child')
-const namesArr = Array.from(names)
+function showNotification({top = 0, right = 0, className, html}) {
+    let notification = document.createElement('div');
+    notification.className = "notification";
+    if (className) {
+        notification.classList.add(className);
+    }
 
-namesArr.sort((a, b) =>a.innerHTML.localeCompare(b.innerHTML))
-let randomArr = []
-namesArr.forEach(e=>randomArr.push(e.innerHTML))
-let i = 0;
-for (let name of names){
-    name.innerHTML = randomArr[i]
-    i++
+    notification.style.top = top + 'px';
+    notification.style.right = right + 'px';
+
+    notification.innerHTML = html;
+    document.body.append(notification);
+
+    setTimeout(() => notification.remove(), 1500);
 }
+
+// test it
+let i = 1;
+setInterval(() => {
+    showNotification({
+        top: 10,
+        right: 10,
+        html: 'Hello ' + i++,
+        className: "welcome"
+    });
+}, 2000);
