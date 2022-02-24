@@ -10,17 +10,30 @@
 function positionAt(anchor, position, elem) {
     const anchorRect = anchor.getBoundingClientRect()
     const elemHeight = elem.offsetHeight
-    if (position ==='top'){
-        elem.style.left = anchorRect.left+ pageXOffset + 'px'
+    const elemWidth = elem.offsetWidth
+    if (position ==='top-out'){
+        elem.style.left = (anchorRect.left+ pageXOffset) + 'px'
         elem.style.top = (anchorRect.top+ pageYOffset-elemHeight) + 'px'
     }
-    if (position ==='right'){
-        elem.style.left = anchorRect.right+ pageXOffset + 'px'
-        elem.style.top = anchorRect.top+ pageYOffset + 'px'
+    if (position ==='right-out'){
+        elem.style.left = (anchorRect.right+ pageXOffset) + 'px'
+        elem.style.top = (anchorRect.top+ pageYOffset) + 'px'
     }
-    if (position ==='bottom'){
-        elem.style.left = anchorRect.left+ pageXOffset + 'px'
-        elem.style.top = anchorRect.bottom+ pageYOffset + 'px'
+    if (position ==='bottom-out'){
+        elem.style.left = (anchorRect.left+ pageXOffset) + 'px'
+        elem.style.top = (anchorRect.bottom+ pageYOffset) + 'px'
+    }
+    if (position ==='top-in'){
+        elem.style.left = (anchorRect.left+ pageXOffset) + 'px'
+        elem.style.top = (anchorRect.top+ pageYOffset) + 'px'
+    }
+    if (position ==='right-in'){
+        elem.style.left = (anchorRect.right+ pageXOffset - elemWidth)  + 'px'
+        elem.style.top = (anchorRect.top+ pageYOffset) + 'px'
+    }
+    if (position ==='bottom-in'){
+        elem.style.left = (anchorRect.left+ pageXOffset) + 'px'
+        elem.style.top = (anchorRect.bottom+ pageYOffset - elemHeight) + 'px'
     }
 }
 
@@ -40,6 +53,7 @@ function showNote(anchor, position, html) {
 // test it
 let blockquote = document.querySelector('blockquote');
 
-showNote(blockquote, "top", "note above");
-showNote(blockquote, "right", "note at the right");
-showNote(blockquote, "bottom", "note below");
+showNote(blockquote, "top-in", "note top-in");
+showNote(blockquote, "top-out", "note top-out");
+showNote(blockquote, "right-out", "note right-out");
+showNote(blockquote, "bottom-in", "note bottom-in");
