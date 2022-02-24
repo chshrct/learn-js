@@ -1,13 +1,7 @@
-let div = document.createElement('div');
+const field = document.getElementById('field')
+const ball = document.getElementById('ball')
+ball.style.left = field.clientWidth/2-ball.offsetWidth/2  + 'px'
+ball.style.top = field.clientHeight/2-ball.offsetHeight/2 + 'px'
 
-div.style.overflowY = 'scroll';
-div.style.width = '50px';
-div.style.height = '50px';
 
-// мы должны вставить элемент в документ, иначе размеры будут равны 0
-document.body.append(div);
-let scrollWidth = div.offsetWidth - div.clientWidth;
 
-div.remove();
-
-alert(scrollWidth);
