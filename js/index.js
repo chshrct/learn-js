@@ -11,16 +11,16 @@ function positionAt(anchor, position, elem) {
     const anchorRect = anchor.getBoundingClientRect()
     const elemHeight = elem.offsetHeight
     if (position ==='top'){
-        elem.style.left = anchorRect.left + 'px'
-        elem.style.top = (anchorRect.top-elemHeight) + 'px'
+        elem.style.left = anchorRect.left+ pageXOffset + 'px'
+        elem.style.top = (anchorRect.top+ pageYOffset-elemHeight) + 'px'
     }
     if (position ==='right'){
-        elem.style.left = anchorRect.right + 'px'
-        elem.style.top = anchorRect.top + 'px'
+        elem.style.left = anchorRect.right+ pageXOffset + 'px'
+        elem.style.top = anchorRect.top+ pageYOffset + 'px'
     }
     if (position ==='bottom'){
-        elem.style.left = anchorRect.left + 'px'
-        elem.style.top = anchorRect.bottom + 'px'
+        elem.style.left = anchorRect.left+ pageXOffset + 'px'
+        elem.style.top = anchorRect.bottom+ pageYOffset + 'px'
     }
 }
 
