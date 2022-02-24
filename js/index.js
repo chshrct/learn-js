@@ -1,7 +1,7 @@
-const field = document.getElementById('field')
-const ball = document.getElementById('ball')
-ball.style.left = field.clientWidth/2-ball.offsetWidth/2  + 'px'
-ball.style.top = field.clientHeight/2-ball.offsetHeight/2 + 'px'
+const div = document.getElementById('field')
+const divRect = div.getBoundingClientRect()
+console.log(divRect.x,divRect.y)
+console.log(divRect.right,divRect.bottom)
 
-
-
+console.log(divRect.x+div.clientLeft,divRect.y+div.clientTop)
+console.log(divRect.x+div.clientLeft+div.clientWidth,divRect.y+div.clientTop+div.clientHeight)
