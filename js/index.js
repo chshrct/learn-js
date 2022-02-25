@@ -1,11 +1,22 @@
-// В переменной button находится кнопка. Изначально на ней нет обработчиков.
-//
-//     Который из обработчиков запустится? Что будет выведено при клике после выполнения кода?
+function clickHandler(e) {
+    const fieldCoords = field.getBoundingClientRect()
+    let left = e.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidth / 2
+    let top = e.clientY - fieldCoords.top - field.clientTop - ball.offsetHeight / 2
 
-    button.addEventListener("click", () => alert("1"));
 
-button.removeEventListener("click", () => alert("1"));
+    if (top < 0) top = 0;
+    if (left < 0) left = 0;
+    if (left + ball.clientWidth > field.clientWidth) {
+        left = field.clientWidth - ball.clientWidth;
+    }
+    if (top + ball.clientHeight > field.clientHeight) {
+        top = field.clientHeight - ball.clientHeight;
+    }
 
-button.onclick = () => alert(2);
+    ball.style.left = left + 'px'
+    ball.style.top = top + 'px'
+}
 
-// 1,2
+const ball = document.getElementById('ball')
+const field = document.getElementById('field')
+field.addEventListener('click', clickHandler)
