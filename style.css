@@ -1,7 +1,13 @@
-.tree span:hover {
-    font-weight: bold;
+table {
+    border-collapse: collapse;
 }
-
-.tree span {
+th, td {
+    border: 1px solid black;
+    padding: 4px;
+}
+th {
     cursor: pointer;
+}
+th:hover {
+    background: yellow;
 }

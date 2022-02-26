@@ -1,18 +1,37 @@
-for (let li of tree.querySelectorAll('li')) {
-    let span = document.createElement('span');
-    li.prepend(span);
-    span.append(span.nextSibling); // поместить текстовый узел внутрь элемента <span>
-}
+grid.onclick = function(e) {
+    if (e.target.tagName != 'TH') return;
 
-//  ловим клики на всём дереве
-tree.onclick = function(event) {
+    let th = e.target;
+    // если ячейка TH, тогда сортировать
+    // cellIndex - это номер ячейки th:
+    //   0 для первого столбца
+    //   1 для второго и т.д.
+    sortGrid(th.cellIndex, th.dataset.type);
+};
 
-    if (event.target.tagName != 'SPAN') {
-        return;
+function sortGrid(colNum, type) {
+    let tbody = grid.querySelector('tbody');
+
+    let rowsArray = Array.from(tbody.rows);
+
+    // compare(a, b) сравнивает две строки, нужен для сортировки
+    let compare;
+
+    switch (type) {
+        case 'number':
+            compare = function(rowA, rowB) {
+                return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
+            };
+            break;
+        case 'string':
+            compare = function(rowA, rowB) {
+                return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+            };
+            break;
     }
 
-    let childrenContainer = event.target.parentNode.querySelector('ul');
-    if (!childrenContainer) return; // нет детей
+    // сортировка
+    rowsArray.sort(compare);
 
-    childrenContainer.hidden = !childrenContainer.hidden;
+    tbody.append(...rowsArray);
 }
