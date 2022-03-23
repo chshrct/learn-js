@@ -1,17 +1,20 @@
-const contents = document.querySelector('#contents')
+const thumbs = document.querySelector('#thumbs')
+const mainImage = document.querySelector('#largeImg')
 
-const linksListener = (
-    /** @type {Event} **/
-    event) => {
-    event.preventDefault()
-
-    const target = event.target
+const listener = (e) => {
+    e.preventDefault()
+    /** @type {HTMLElement}**/
+    const target = e.target
     const link = target.closest('a')
-    if (link && contents.contains(link)) {
-        confirm(`Leave for ${link.href}`)
-            && (window.location = link.href)
-    }
 
+    if (link && thumbs.contains(link)) {
+
+        mainImage.src = link.href
+
+    }
 }
 
-contents.addEventListener('click', linksListener)
+
+
+
+thumbs.addEventListener('click', listener)
