@@ -1,37 +1,28 @@
-grid.onclick = function(e) {
-    if (e.target.tagName != 'TH') return;
+const addTooltip = (e) => {
+    if (typeof (e.target.dataset.tooltip) !== 'string') return
+    const button = e.target
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = e.target.dataset.tooltip;
+    document.body.prepend(tooltip);
 
-    let th = e.target;
-    // если ячейка TH, тогда сортировать
-    // cellIndex - это номер ячейки th:
-    //   0 для первого столбца
-    //   1 для второго и т.д.
-    sortGrid(th.cellIndex, th.dataset.type);
-};
+    const buttonClientRect = button.getBoundingClientRect();
+    const tooltipClientRect = tooltip.getBoundingClientRect();
 
-function sortGrid(colNum, type) {
-    let tbody = grid.querySelector('tbody');
 
-    let rowsArray = Array.from(tbody.rows);
+    (buttonClientRect.top < tooltipClientRect.height + 5)
+        ? tooltip.style.top = `${buttonClientRect.bottom + 5}px`
+        : tooltip.style.top = `${buttonClientRect.top - tooltipClientRect.height - 5}px`;
 
-    // compare(a, b) сравнивает две строки, нужен для сортировки
-    let compare;
-
-    switch (type) {
-        case 'number':
-            compare = function(rowA, rowB) {
-                return rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML;
-            };
-            break;
-        case 'string':
-            compare = function(rowA, rowB) {
-                return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
-            };
-            break;
-    }
-
-    // сортировка
-    rowsArray.sort(compare);
-
-    tbody.append(...rowsArray);
+    (buttonClientRect.width / 2 + buttonClientRect.left > tooltipClientRect.width / 2)
+        ? tooltip.style.left = `${(buttonClientRect.width / 2 + buttonClientRect.left) - (tooltipClientRect.width / 2)}px`
+        : tooltip.style.left = `${buttonClientRect.left}px`;
 }
+const removeTooltip = (event) => {
+    if (typeof (event.target.dataset.tooltip) !== 'string') return
+    document.querySelector('.tooltip').remove()
+}
+
+
+document.addEventListener('mouseover', addTooltip)
+document.addEventListener('mouseout', removeTooltip)
