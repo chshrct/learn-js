@@ -1,28 +1,27 @@
-const houseDiv = document.querySelector('#house')
+const sliderRect = document.querySelector('.slider').getBoundingClientRect()
+const thumb = document.querySelector('.thumb')
+const thumbRect = thumb.getBoundingClientRect()
 
-const addTooltip = (e) => {
-
-    /** @type {HTMLElement} **/
-    const target = e.target
-    const closestElemWithTooltip = e.target.closest('[data-tooltip]')
-    
-    const tooltip = document.createElement('div')
-    tooltip.className = 'tooltip'
-    tooltip.textContent = closestElemWithTooltip.dataset.tooltip
-    document.body.append(tooltip)
-    
+const mouseMove = (event) => {
+    thumb.style.left = `${event.clientX - sliderRect.left}px`
+    if (event.clientX - sliderRect.left < 0) thumb.style.left = '0px'
+    if (event.clientX - sliderRect.right + thumbRect.width > 0) thumb.style.left = `${sliderRect.width - thumbRect.width}px`
 }
 
-const removeTooltip =  (e) => {
-    
-    /** @type {HTMLElement} **/
-    const target = e.target
-    const closestElemWithTooltip = e.target.closest('[data-tooltip]')
-    const tooltip = document.querySelector('.tooltip')
-    tooltip.remove()
+const thumbCatch = (
+    /**@type {MouseEvent} **/
+    event
+) => {
 
-    
+    if (event.target === thumb) {
+
+        document.addEventListener('mousemove', mouseMove)
+
+    }
 }
+thumb.ondragstart = function() {
+    return false;
+  };
 
-houseDiv.addEventListener("mouseover", addTooltip)
-houseDiv.addEventListener("mouseout", removeTooltip)
+document.addEventListener('mousedown', thumbCatch)
+document.addEventListener('mouseup',()=>{document.removeEventListener('mousemove',mouseMove)})
