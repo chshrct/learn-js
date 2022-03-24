@@ -1,20 +1,28 @@
-const thumbs = document.querySelector('#thumbs')
-const mainImage = document.querySelector('#largeImg')
+const unorderedList = document.querySelector('#ul')
 
-const listener = (e) => {
-    e.preventDefault()
-    /** @type {HTMLElement}**/
-    const target = e.target
-    const link = target.closest('a')
 
-    if (link && thumbs.contains(link)) {
+const clickHandler = (
+    /**@type {MouseEvent} **/
+    event) => {
+    /**@type {HTMLElement} **/
+    const target = event.target
+    const selected = unorderedList.querySelectorAll('.selected')
+    const li = target.closest('li')
 
-        mainImage.src = link.href
+
+
+    if (li && unorderedList.contains(li)) {
+
+        if (!event.ctrlKey) for (let sel of selected) {
+            sel.classList.remove('selected')
+        }
+
+        li.classList.add('selected')
+
 
     }
+
 }
 
-
-
-
-thumbs.addEventListener('click', listener)
+unorderedList.addEventListener('click', clickHandler)
+unorderedList.addEventListener('mousedown', (e)=>{e.preventDefault()})
