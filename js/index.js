@@ -1,28 +1,28 @@
-const unorderedList = document.querySelector('#ul')
+const houseDiv = document.querySelector('#house')
 
+const addTooltip = (e) => {
 
-const clickHandler = (
-    /**@type {MouseEvent} **/
-    event) => {
-    /**@type {HTMLElement} **/
-    const target = event.target
-    const selected = unorderedList.querySelectorAll('.selected')
-    const li = target.closest('li')
-
-
-
-    if (li && unorderedList.contains(li)) {
-
-        if (!event.ctrlKey) for (let sel of selected) {
-            sel.classList.remove('selected')
-        }
-
-        li.classList.add('selected')
-
-
-    }
-
+    /** @type {HTMLElement} **/
+    const target = e.target
+    const closestElemWithTooltip = e.target.closest('[data-tooltip]')
+    
+    const tooltip = document.createElement('div')
+    tooltip.className = 'tooltip'
+    tooltip.textContent = closestElemWithTooltip.dataset.tooltip
+    document.body.append(tooltip)
+    
 }
 
-unorderedList.addEventListener('click', clickHandler)
-unorderedList.addEventListener('mousedown', (e)=>{e.preventDefault()})
+const removeTooltip =  (e) => {
+    
+    /** @type {HTMLElement} **/
+    const target = e.target
+    const closestElemWithTooltip = e.target.closest('[data-tooltip]')
+    const tooltip = document.querySelector('.tooltip')
+    tooltip.remove()
+
+    
+}
+
+houseDiv.addEventListener("mouseover", addTooltip)
+houseDiv.addEventListener("mouseout", removeTooltip)
