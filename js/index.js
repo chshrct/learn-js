@@ -1,11 +1,13 @@
-function populate() {
-    while(true) {
-      let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-      if (windowRelativeBottom > document.documentElement.clientHeight + 100) break;
-      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
-    }
-  }
+const arrow = document.querySelector('#arrowTop')
+arrow.hidden = true
+const documentRect = document.documentElement.getBoundingClientRect()
 
-  window.addEventListener('scroll', populate);
+const scrollHandler = () => {
+    arrow.hidden = documentRect.height > document.documentElement.scrollTop
 
-  populate();
+}
+
+window.addEventListener('scroll', scrollHandler)
+arrow.addEventListener('click', () => {
+    document.documentElement.scrollTo(0, 0)
+})
