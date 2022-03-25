@@ -1,13 +1,13 @@
-const arrow = document.querySelector('#arrowTop')
-arrow.hidden = true
-const documentRect = document.documentElement.getBoundingClientRect()
+let imgWithData = document.querySelectorAll('[data-src]')
 
-const scrollHandler = () => {
-    arrow.hidden = documentRect.height > document.documentElement.scrollTop
-
+const changeSrc = ()=> {
+    for (let img of imgWithData){
+        console.log(img.getBoundingClientRect().top,document.documentElement.scrollTop+document.documentElement.clientHeight);
+        if(img.getBoundingClientRect().top<document.documentElement.scrollTop+document.documentElement.clientHeight){
+            img.src = img.dataset.src
+        }
+    }
 }
 
-window.addEventListener('scroll', scrollHandler)
-arrow.addEventListener('click', () => {
-    document.documentElement.scrollTo(0, 0)
-})
+changeSrc()
+window.addEventListener('scroll',changeSrc)
