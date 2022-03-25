@@ -1,27 +1,33 @@
-const sliderRect = document.querySelector('.slider').getBoundingClientRect()
-const thumb = document.querySelector('.thumb')
-const thumbRect = thumb.getBoundingClientRect()
+function runOnKeys(func,...args){
 
-const mouseMove = (event) => {
-    thumb.style.left = `${event.clientX - sliderRect.left}px`
-    if (event.clientX - sliderRect.left < 0) thumb.style.left = '0px'
-    if (event.clientX - sliderRect.right + thumbRect.width > 0) thumb.style.left = `${sliderRect.width - thumbRect.width}px`
-}
+    let pressedKeys = new Set()
 
-const thumbCatch = (
-    /**@type {MouseEvent} **/
-    event
-) => {
-
-    if (event.target === thumb) {
-
-        document.addEventListener('mousemove', mouseMove)
-
+    const comparePressedWithArgs = (pressed,args) => {
+        for (let key of pressed) {
+            if (!args.includes(key)) return false      
+        }
+        return true
     }
-}
-thumb.ondragstart = function() {
-    return false;
-  };
 
-document.addEventListener('mousedown', thumbCatch)
-document.addEventListener('mouseup',()=>{document.removeEventListener('mousemove',mouseMove)})
+    const keyDown = function(/** @type {KeyboardEvent} **/event){
+
+        pressedKeys.add(event.code)
+        if (pressedKeys.size<2 ||  !comparePressedWithArgs(pressedKeys,args) ) return
+        pressedKeys.clear()
+        return func()
+    }
+
+    const keyUp = function(/** @type {KeyboardEvent} **/event){
+        pressedKeys.delete(event.code)
+    }
+
+    document.addEventListener('keydown',keyDown)
+    document.addEventListener('keyup',keyUp)
+
+}
+
+runOnKeys(
+    () => alert("Привет!"),
+    "KeyQ",
+    "KeyW"
+  );
